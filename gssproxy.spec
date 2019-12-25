@@ -4,7 +4,7 @@
 
 Name:		gssproxy
 Version:	0.8.0
-Release:	8
+Release:	9
 Summary:	GSSAPI Proxy
 License:	MIT
 URL:		https://pagure.io/gssproxy
@@ -15,7 +15,10 @@ Patch1: Clarify-debug-and-debug_level-in-man-pages.patch
 Patch2: Always-choose-highest-requested-debug-level.patch
 Patch3: Don-t-leak-sock_ctx-if-verto_add_io-fails.patch
 
-Requires: krb5 keyutils libverto-module-base libini_config systemd
+Requires: krb5 keyutils libverto-module-base libini_config
+Requires(post): systemd
+Requires(preun): systemd
+Requires(postun): systemd
 
 Conflicts: selinux-policy < 3.13.1-283.5
 
@@ -84,6 +87,9 @@ mkdir -p %{buildroot}%{gpstatedir}/rcache
 %{_mandir}/man8/gssproxy-mech.8*
 
 %changelog
+* Fri Dec 20 2019 openEuler Buildteam <buildteam@openeuler.org> - 0.8.0-9
+- Modify requires
+
 * Fri Sep 27 2018 openEuler Buildteam <buildteam@openeuler.org> 0.8.0-8
 - Package init
 
