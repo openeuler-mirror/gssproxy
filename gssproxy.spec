@@ -4,7 +4,7 @@
 
 Name:		gssproxy
 Version:	0.8.0
-Release:	9
+Release:	10
 Summary:	GSSAPI Proxy
 License:	MIT
 URL:		https://pagure.io/gssproxy
@@ -78,6 +78,7 @@ mkdir -p %{buildroot}%{gpstatedir}/rcache
 %attr(0600,root,root) %config(noreplace) /%{_sysconfdir}/gssproxy/gssproxy.conf
 %attr(0600,root,root) %config(noreplace) /%{_sysconfdir}/gssproxy/99-nfs-client.conf
 %attr(0644,root,root) %config(noreplace) /%{_sysconfdir}/gss/mech.d/gssproxy.conf
+%attr(0600,root,root) %config(noreplace) /%{_sysconfdir}/gssproxy/24-nfs-server.conf
 %dir %{_libdir}/gssproxy
 %{_libdir}/gssproxy/proxymech.so
 
@@ -87,6 +88,9 @@ mkdir -p %{buildroot}%{gpstatedir}/rcache
 %{_mandir}/man8/gssproxy-mech.8*
 
 %changelog
+* Sat Jan 11 2020 openEuler Buildteam <buildteam@openeuler.org> - 0.8.0-10
+- add the 24-nfs-server.conf file for nfs-server
+
 * Fri Dec 20 2019 openEuler Buildteam <buildteam@openeuler.org> - 0.8.0-9
 - Modify requires
 
