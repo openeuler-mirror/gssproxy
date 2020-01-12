@@ -94,7 +94,7 @@ mkdir -p %{buildroot}%{gpstatedir}/rcache
 * Fri Dec 20 2019 openEuler Buildteam <buildteam@openeuler.org> - 0.8.0-9
 - Modify requires
 
-* Fri Sep 27 2018 openEuler Buildteam <buildteam@openeuler.org> 0.8.0-8
+* Thu Sep 27 2018 openEuler Buildteam <buildteam@openeuler.org> 0.8.0-8
 - Package init
 
 * Mon Sep 10 2018 openEuler Buildteam <buildteam@openeuler.org> 0.8.0-7
