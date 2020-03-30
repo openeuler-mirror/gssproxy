@@ -4,7 +4,7 @@
 
 Name:		gssproxy
 Version:	0.8.0
-Release:	11
+Release:	12
 Summary:	GSSAPI Proxy
 License:	MIT
 URL:		https://pagure.io/gssproxy
@@ -14,6 +14,7 @@ Patch0: Always-use-the-encype-we-selected.patch
 Patch1: Clarify-debug-and-debug_level-in-man-pages.patch
 Patch2: Always-choose-highest-requested-debug-level.patch
 Patch3: Don-t-leak-sock_ctx-if-verto_add_io-fails.patch
+Patch4: Unlock-cond_mutex-before-pthread-exit-in-gp_worker_main.patch
 
 Requires: krb5 keyutils libverto-module-base libini_config
 Requires(post): systemd
@@ -89,6 +90,9 @@ mkdir -p %{buildroot}%{gpstatedir}/rcache
 %{_mandir}/man8/gssproxy-mech.8*
 
 %changelog
+* Fri Mar 27 2020 steven <steven_ygui@163.com> - 0.8.0-12
+- Unlock cond_mutex before pthread exit in gp_worker_main()
+
 * Sun Jan 12 2020 openEuler Buildteam <buildteam@openeuler.org> - 0.8.0-11
 - revise the bogus date in changelog and instll the 24-nfs-server.conf file
 
