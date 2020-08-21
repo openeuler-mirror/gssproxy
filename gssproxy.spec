@@ -3,17 +3,12 @@
 %global gpstatedir %{_localstatedir}/lib/gssproxy
 
 Name:		gssproxy
-Version:	0.8.0
-Release:	11
+Version:	0.8.3
+Release:	1
 Summary:	GSSAPI Proxy
 License:	MIT
-URL:		https://pagure.io/gssproxy
-Source0:	%{name}-%{version}.tar.gz
-
-Patch0: Always-use-the-encype-we-selected.patch
-Patch1: Clarify-debug-and-debug_level-in-man-pages.patch
-Patch2: Always-choose-highest-requested-debug-level.patch
-Patch3: Don-t-leak-sock_ctx-if-verto_add_io-fails.patch
+URL:		https://github.com/gssapi/gssproxy
+Source0:	https://github.com/gssapi/%{name}/releases/download/v%{version}/%{name}-%{version}.tar.gz
 
 Requires: krb5 keyutils libverto-module-base libini_config
 Requires(post): systemd
@@ -89,6 +84,9 @@ mkdir -p %{buildroot}%{gpstatedir}/rcache
 %{_mandir}/man8/gssproxy-mech.8*
 
 %changelog
+* Thu Aug 20 2020 wangchen <wangchen137@huawei.com> - 0.8.3-1
+- update to 0.8.3
+
 * Sun Jan 12 2020 openEuler Buildteam <buildteam@openeuler.org> - 0.8.0-11
 - revise the bogus date in changelog and instll the 24-nfs-server.conf file
 
