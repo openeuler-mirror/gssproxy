@@ -3,7 +3,7 @@
 %global gpstatedir %{_localstatedir}/lib/gssproxy
 
 Name:		gssproxy
-Version:	0.8.3
+Version:	0.8.4
 Release:	1
 Summary:	GSSAPI Proxy
 License:	MIT
@@ -85,6 +85,9 @@ mkdir -p %{buildroot}%{gpstatedir}/rcache
 %{_mandir}/man8/gssproxy-mech.8*
 
 %changelog
+* Fri Dec 24 2021 yixiangzhike <yixiangzhike007@163.com> - 0.8.4-1
+- update to 0.8.4
+
 * Sat Jul 25 2020 zhangxingliang <zhangxingliang3@huawei.com> - 0.8.3-1
 - Type:update
 - ID:NA
