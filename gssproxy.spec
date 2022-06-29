@@ -3,7 +3,7 @@
 %global gpstatedir %{_localstatedir}/lib/gssproxy
 
 Name:		gssproxy
-Version:	0.8.4
+Version:	0.9.1
 Release:	1
 Summary:	GSSAPI Proxy
 License:	MIT
@@ -50,9 +50,10 @@ rm -rf %{buildroot}
 rm -f %{buildroot}%{_libdir}/gssproxy/proxymech.la
 install -d -m755 %{buildroot}%{_sysconfdir}/gssproxy
 install -m644 examples/gssproxy.conf %{buildroot}%{_sysconfdir}/gssproxy/gssproxy.conf
-install -m644 examples/99-nfs-client.conf %{buildroot}%{_sysconfdir}/gssproxy/99-nfs-client.conf
-install -D -m644 examples/mech %{buildroot}%{_sysconfdir}/gss/mech.d/gssproxy.conf
+install -m644 examples/99-network-fs-clients.conf %{buildroot}%{_sysconfdir}/gssproxy/99-network-fs-clients.conf
+install -D -m644 examples/proxymech.conf %{buildroot}%{_sysconfdir}/gss/mech.d/proxymech.conf
 install -m644 examples/24-nfs-server.conf %{buildroot}%{_sysconfdir}/gssproxy/24-nfs-server.conf
+install -m644 examples/80-httpd.conf %{buildroot}%{_sysconfdir}/gssproxy/80-httpd.conf
 mkdir -p %{buildroot}%{gpstatedir}/rcache
 
 %post
@@ -68,14 +69,17 @@ mkdir -p %{buildroot}%{gpstatedir}/rcache
 %license COPYING
 %{_unitdir}/gssproxy.service
 %{_sbindir}/gssproxy
+%{_prefix}/lib/systemd/user/gssuserproxy.service
+%{_prefix}/lib/systemd/user/gssuserproxy.socket
 %attr(755,root,root) %dir %{pubconfpath}
 %attr(755,root,root) %dir %{gpstatedir}
 %attr(700,root,root) %dir %{gpstatedir}/clients
 %attr(700,root,root) %dir %{gpstatedir}/rcache
 %attr(0600,root,root) %config(noreplace) /%{_sysconfdir}/gssproxy/gssproxy.conf
-%attr(0600,root,root) %config(noreplace) /%{_sysconfdir}/gssproxy/99-nfs-client.conf
-%attr(0644,root,root) %config(noreplace) /%{_sysconfdir}/gss/mech.d/gssproxy.conf
+%attr(0600,root,root) %config(noreplace) /%{_sysconfdir}/gssproxy/99-network-fs-clients.conf
+%attr(0644,root,root) %config(noreplace) /%{_sysconfdir}/gss/mech.d/proxymech.conf
 %attr(0600,root,root) %config(noreplace) /%{_sysconfdir}/gssproxy/24-nfs-server.conf
+%attr(0644,root,root) %config(noreplace) /%{_sysconfdir}/gssproxy/80-httpd.conf
 %dir %{_libdir}/gssproxy
 %{_libdir}/gssproxy/proxymech.so
 
@@ -85,6 +89,9 @@ mkdir -p %{buildroot}%{gpstatedir}/rcache
 %{_mandir}/man8/gssproxy-mech.8*
 
 %changelog
+* Sat Jun 11 2022 YukariChiba <i@0x7f.cc> - 0.9.1-1
+- Upgrade version.
+
 * Fri Dec 24 2021 yixiangzhike <yixiangzhike007@163.com> - 0.8.4-1
 - update to 0.8.4
 
